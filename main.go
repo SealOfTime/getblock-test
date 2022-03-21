@@ -180,9 +180,9 @@ func getAccountDeltasForBlock(block EthBlock) (map[string]*big.Int, error) {
 		}
 
 		txFee.Mul(txGas, txGasPrice)
-		res[tx.From].Add(res[tx.From], txFee)
 
-		res[tx.From].Add(res[tx.From], txValue)
+		res[tx.From].Sub(res[tx.From], txFee)
+		res[tx.From].Sub(res[tx.From], txValue)
 
 		if tx.IsContractDeployment() {
 			continue
