@@ -28,6 +28,10 @@ type EthTx struct {
 	Value    string `json:"value"`    // gwei
 }
 
+func (tx EthTx) IsContractDeployment() bool {
+	return tx.To == ""
+}
+
 type getBlockApi struct {
 	ApiKey string
 }
